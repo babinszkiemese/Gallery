@@ -25,6 +25,7 @@ let city = {
 };
 let pictures = [hauses, twilight, bridge, love, city]
 
+let thumbnailsphoto = 0
 
 let currentPhoto = 0
 
@@ -34,9 +35,10 @@ let loadPhoto = (photoNumber) => {
     $('#photo-description').text(pictures[currentPhoto].description)
 }
  
+loadPhoto(currentPhoto)
 
 $('#right').click(() => {
-   if (currentPhoto<5) {
+   if (currentPhoto<=4) {
     currentPhoto++ 
     loadPhoto(currentPhoto)} else {
         currentPhoto = 0 
@@ -45,10 +47,15 @@ $('#right').click(() => {
 })
  
  $('#left').click(() => {
-   if (currentPhoto>0) {
+   if (currentPhoto>=0) {
        currentPhoto-- 
        loadPhoto(currentPhoto)} else {
-        currentPhoto = 5
+        currentPhoto = 4
         loadPhoto(currentPhoto)
     }
    })
+
+   pictures.forEach((picture) => {
+    $('.thumbnails').append(`<div class="nail"></div>`);
+    $('.nail').append(`<img class="mini" src="${picture.photo}" alt="" width= "95%" height= "95%">`);
+})
